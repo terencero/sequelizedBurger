@@ -3,6 +3,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+var db = require('./models');
+
 // Set handlebars
 var exphbs = require('express-handlebars');
 
@@ -28,5 +30,9 @@ var routes = require('./controllers/burger_controller.js');
 
 app.use('/', routes);
 
-app.listen(PORT);
+
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+
 

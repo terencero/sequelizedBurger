@@ -1,10 +1,7 @@
-// Require models folder, which requires index.js by default; index.js will loop through all models with forEach and connect to mysql database
-var db = require('../models');
-
 module.exports = function(sequelize, DataTypes) {
 	var Burger = sequelize.define('Burger', {
 		id: {
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			autoIncrement: true,
 			primaryKey: true,
 			allowNull: false

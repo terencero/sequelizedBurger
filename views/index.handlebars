@@ -8,12 +8,12 @@
 <div class="undevoured">
 <h2>Eat These Burgers!</h2>
 <ul>
-  {{#each burgers}}
+  {{#each Burgers}}
     {{#unless this.devoured}}
       <li>
         {{this.burger_name}}
 
-        <form action="/{{this.id}}?_method=PUT" method="POST">
+        <form action="/{{this.id}}/?_method=PUT" method="POST">
           <input type="hidden" name="devoured" value="true">
           <button type="submit">Devour!</button>
         </form>
@@ -27,7 +27,7 @@
 <div class="devoured">
 <h2>Burgers that have been devoured!</h2>
 <ul>
-  {{#each burgers}}
+  {{#each Burgers}}
     {{#if this.devoured}}
       <li>
         {{this.burger_name}}

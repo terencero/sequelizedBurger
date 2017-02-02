@@ -7,26 +7,30 @@ var router = express.Router();
 
 router.get('/', function(req, res) {
 	db.Burger.findAll({}).then(function(dbPost){
-		res.json(dbPost);
-	});
-});
-router.post('/', function(req, res) {
-	db.Burger.create({
-		burger_name: req.body.burger_name,
-		devoured: req.body.devoured
-	}).then(function(dbPost){
-		res.json(dbPost);
+		var hbsObject = {
+			Burgers: dbPost
+		};
+		res.render('index', hbsObject);
 	});
 });
 
-router.put('/', function(req, res) {
-	db.Burger.update(req.body, 
+router.post('/', function(req, res) {
+	db.Burger.create({
+		burger_name: req.body.burger_name
+		// devoured: req.body.devoured
+	}).then(function(dbPost) {
+		res.redirect('/');
+	});
+});
+
+router.put('/:id', function(req, res) {
+	db.Burger.update({devoured: 1}, 
 	{
 		where: {
-			id: req.body.id
+			id: req.params.id
 		}
 	}).then(function(dbPost) {
-		res.json(dbPost);
+		res.redirect('/');
 	});
 });
 

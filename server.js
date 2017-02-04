@@ -11,28 +11,31 @@ var exphbs = require('express-handlebars');
 var app = express();
 var PORT  = process.env.PORT || 8080;
 
-
-
+// middleware
 // Serve/route to static content
 app.use(express.static(process.cwd() + '/public'));
 
+// interpret data as json object
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
-// Override with POST having ?_method=DELETE
+
+// Override post method on handlebars.js with ?_method=put
 app.use(methodOverride('_method'));
 
+// use handlebars and set the defaul layout as main.js
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-// Import routes and the server access to them
+// Import router and assign to routes
 var routes = require('./controllers/burger_controller.js');
 
+// use the get/post/update routes in burger_controller.js
 app.use('/', routes);
 
-
-db.sequelize.sync({ force: true }).then(function() {
+// sync database; sequelize.sync({}) empty object so that the database does not get overridden
+db.sequelize.sync({}).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

@@ -1,3 +1,4 @@
+// export the burger table model
 module.exports = function(sequelize, DataTypes) {
 	var Burger = sequelize.define('Burger', {
 		id: {
@@ -6,7 +7,6 @@ module.exports = function(sequelize, DataTypes) {
 			primaryKey: true,
 			allowNull: false
 		},
-	
 		burger_name: { 
 			type: DataTypes.STRING, 
 			allowNull: false,
@@ -17,8 +17,10 @@ module.exports = function(sequelize, DataTypes) {
 		devoured: { 
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
+			// make the default value false to ensure burger is not devoured upon creating a new burger
 			defaultValue: false
 		}
 	});
+	// return the model to be available to access when imported in burger_controller
 	return Burger;
 };

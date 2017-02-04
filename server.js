@@ -8,8 +8,9 @@ var db = require('./models');
 // Set handlebars
 var exphbs = require('express-handlebars');
 
-var PORT  = process.env.PORT || 8080;
 var app = express();
+var PORT  = process.env.PORT || 8080;
+
 
 
 // Serve/route to static content

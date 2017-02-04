@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/terencero/burger.git"
+    "url": "git+https://github.com/terencero/sequelizedBurger.git"
   },
   "author": "",
   "license": "ISC",

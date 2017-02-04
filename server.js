@@ -10,7 +10,7 @@ var exphbs = require('express-handlebars');
 
 var PORT  = process.env.PORT || 8080;
 var app = express();
-app.set('port', (process.env.PORT || 8080));
+
 
 // Serve/route to static content
 app.use(express.static(process.cwd() + '/public'));
@@ -31,8 +31,10 @@ var routes = require('./controllers/burger_controller.js');
 app.use('/', routes);
 
 
+db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
+});
 
 
